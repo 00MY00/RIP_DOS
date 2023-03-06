@@ -13,11 +13,20 @@ subprocess.run(["python.exe", "-m", "pip", "install", "--upgrade", "pip"])
 # Exécute la commande pour installer les outils C++ de Windows ou Linux
 if platform.system() == "Windows":
     print("OS WINDOWS")
-    ps_command = 'powershell.exe -Command "Invoke-WebRequest -Uri \'' \
-             'https://aka.ms/vs/16/release/vs_buildtools.exe\' ' \
-             '-OutFile \'vs_buildtools.exe\'; ' \
-             '& .\\vs_buildtools.exe"'
+    #ps_command = 'powershell.exe -Command "Invoke-WebRequest -Uri \'' \
+    #         'https://aka.ms/vs/16/release/vs_buildtools.exe\' ' \
+    #         '-OutFile \'vs_buildtools.exe\'; ' \
+    #         '& .\\vs_buildtools.exe"'
+    
+    ps_command = 'powershell.exe -Command "Start-Process -FilePath \'' \
+                 'https://aka.ms/vs/16/release/vs_buildtools.exe\' ' \
+                 '-ArgumentList \'/quiet /norestart\' ' \
+                 '-Wait"'
     subprocess.run(ps_command, shell=True)
+
+    command = 'vs_buildtools.exe --norestart --passive --downloadThenInstall --includeRecommended --add Microsoft.VisualStudio.Workload.NativeDesktop --add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Workload.MSBuildTools'
+    subprocess.run(command, shell=True)
+
     print("Cliquer sur Modifier a droite de 'Visual Studio Build Tools'")
     print("Cocher la case Dévloppement Desktop C++")
     print("Finissez l'instalation, redémarée et re executer le script !")
