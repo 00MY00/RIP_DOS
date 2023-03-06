@@ -27,7 +27,6 @@ if platform.system() == "Windows":
     
     
 
-
 elif platform.system() == "Linux":
     print("OS LINUX")
     os.system("sudo apt update")
@@ -43,6 +42,7 @@ from scapy.all import *
 def create_random_network():
     network = str(random.randint(1, 254)) + "." + str(random.randint(0, 255)) + "." + str(random.randint(0, 255)) + "." + str(0)
     mask = "255." + str(random.randint(0, 255)) + "." + str(random.randint(0, 255)) + "." + str(0)
+    print(network, mask)
     return (network, mask)
 
 # Détecte l'adresse IP du routeur
