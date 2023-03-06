@@ -1,13 +1,13 @@
 # Created BY Kuroakashiro
 import os
+import subprocess
 import random
 import time
-import netifaces
-import subprocess
 
 # Installe les librairies nécessaires avec pip
 subprocess.call(["pip", "install", "scapy", "netifaces"])
 
+import netifaces
 from scapy.all import *
 
 # Fonction pour créer une adresse réseau aléatoire
