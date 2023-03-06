@@ -1,10 +1,26 @@
 # Created BY Kuroakashiro
 import os
+import platform
 import subprocess
 import random
 import time
 
+
 # Installe les librairies nécessaires avec pip
+subprocess.run(["python.exe", "-m", "pip", "install", "--upgrade", "pip"])
+
+
+# Exécute la commande pour installer les outils C++ de Windows ou Linux
+if platform.system() == "Windows":
+    print("OS WINDOWS")
+    subprocess.run(["powershell.exe", "start-process", "powershell.exe", "-verb", "runas", "-argumentlist", "'/c', 'choco', 'install', '-y', 'visualcppbuildtools'"])
+
+elif platform.system() == "Linux":
+    print("OS LINUX")
+    os.system("apt-get update")
+    os.system("apt-get install -y build-essential")
+
+# Installation netifaces
 subprocess.call(["pip", "install", "scapy", "netifaces"])
 
 import netifaces
