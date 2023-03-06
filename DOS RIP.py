@@ -16,8 +16,15 @@ if platform.system() == "Windows":
     ps_command = 'powershell.exe -Command "Invoke-WebRequest -Uri \'' \
              'https://aka.ms/vs/16/release/vs_buildtools.exe\' ' \
              '-OutFile \'vs_buildtools.exe\'; ' \
-             '& .\\vs_buildtools.exe --quiet --norestart"'
+             '& .\\vs_buildtools.exe"'
     subprocess.run(ps_command, shell=True)
+    print("Cliquer sur Modifier a droite de 'Visual Studio Build Tools'")
+    print("Cocher la case Dévloppement Desktop C++")
+    print("Finissez l'instalation, redémarée et re executer le script !")
+    time.sleep(300)
+    exit
+    
+
 
 elif platform.system() == "Linux":
     print("OS LINUX")
