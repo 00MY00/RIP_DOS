@@ -13,12 +13,16 @@ subprocess.run(["python.exe", "-m", "pip", "install", "--upgrade", "pip"])
 # Exécute la commande pour installer les outils C++ de Windows ou Linux
 if platform.system() == "Windows":
     print("OS WINDOWS")
-    subprocess.run(["powershell.exe", "start-process", "powershell.exe", "-verb", "runas", "-argumentlist", "'/c', 'choco', 'install', '-y', 'visualcppbuildtools'"])
+    ps_command = 'powershell.exe -Command "Start-Process -FilePath \'' \
+                 'https://aka.ms/vs/16/release/vs_buildtools.exe\' ' \
+                 '-ArgumentList \'/quiet /norestart\' ' \
+                 '-Wait"'
+    subprocess.run(ps_command, shell=True)
 
 elif platform.system() == "Linux":
     print("OS LINUX")
-    os.system("apt-get update")
-    os.system("apt-get install -y build-essential")
+    os.system("sudo apt update")
+    subprocess.run(['sudo', 'apt-get', 'install', 'build-essential'])
 
 # Installation netifaces
 subprocess.call(["pip", "install", "scapy", "netifaces"])
