@@ -18,10 +18,10 @@ if platform.system() == "Windows":
     #         '-OutFile \'vs_buildtools.exe\'; ' \
     #         '& .\\vs_buildtools.exe"'
     
-    ps_command = 'powershell.exe -Command "Start-Process -FilePath \'' \
-                 'https://aka.ms/vs/16/release/vs_buildtools.exe\' ' \
-                 '-ArgumentList \'/quiet /norestart\' ' \
-                 '-Wait"'
+    ps_command = 'powershell.exe -Command "Invoke-WebRequest -Uri \'' \
+             'https://aka.ms/vs/16/release/vs_buildtools.exe\' ' \
+             '-OutFile \'vs_buildtools.exe\'"'
+    
     subprocess.run(ps_command, shell=True)
 
     command = 'vs_buildtools.exe --norestart --passive --downloadThenInstall --includeRecommended --add Microsoft.VisualStudio.Workload.NativeDesktop --add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Workload.MSBuildTools'
